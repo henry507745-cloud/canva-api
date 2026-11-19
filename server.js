@@ -44,7 +44,7 @@ async function requireAdmin(req, res, next) {
 
 app.get('/', (req, res) => res.send('Backup API is running'));
 
-app.get('/api/data', async (req, res) => {
+app.get('/api/data', requireAdmin, async (req, res) => {
   const { data, error } = await admin
     .from('site_backup')
     .select('data')
